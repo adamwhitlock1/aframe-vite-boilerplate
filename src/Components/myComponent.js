@@ -1,21 +1,33 @@
 AFRAME.registerComponent('my-component', {
   schema: {
-    
+    color: { default: 'red' }
   },
+
+
 
   init: function () {
-    console.log("my-component loaded!");
+    var data = this.data;
+    var el = this.el;
+    console.log(el);
+    var defaultColor = el.getAttribute('color');
+    console.log(data);
+
+    el.addEventListener('mouseenter', function () {
+      el.setAttribute('color', data.color);
+    });
+
+    el.addEventListener('mouseleave', function () {
+      el.setAttribute('color', defaultColor);
+    });
   },
 
-  update: function () {
-    // Do something when component's data is updated.
-  },
+
 
   remove: function () {
     // Do something the component or its entity is detached.
   },
 
   tick: function (time, timeDelta) {
-    // Do something on every scene tick or frame.
+
   }
 });
